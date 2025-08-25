@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio • Your Name</title>
+  <meta name="description" content="Personal portfolio of Your Name — web developer, designer, and problem solver." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d10;
+      --card: #11151a;
+      --text: #e7ebf0;
+      --muted: #aab4bf;
+      --brand: #6ee7ff;
+      --brand-2: #9b6bff;
+      --ring: #2a3643;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    :root.light{
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #0f1720;
+      --muted: #4b5563;
+      --brand: #0052ff;
+      --brand-2: #6b3cff;
+      --ring: #dbe5ff;
+      --shadow: 0 12px 30px rgba(2, 6, 23, .08);
+    }
+    *{ box-sizing: border-box }
+    html{ scroll-behavior: smooth }
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(107,60,255,.15), transparent 60%),
+                  radial-gradient(900px 600px at -10% 20%, rgba(0,82,255,.18), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{ color: inherit; text-decoration: none }
+    .container{ width: min(1120px, 92%); margin: 0 auto }
+    header{
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--ring);
+    }
+    .nav{
+      display: flex; align-items:center; justify-content: space-between; gap:16px; padding: 14px 0;
+    }
+    .logo{ font-weight:800; letter-spacing:.4px }
+    .logo span{ color: var(--brand) }
+    .nav a{ padding:10px 12px; border-radius: 10px }
+    .nav a:hover{ background: color-mix(in oklab, var(--ring) 30%, transparent) }
+    .right{ display:flex; align-items:center; gap:10px }
+    .btn{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--ring); padding:10px 14px; border-radius: 12px; box-shadow: var(--shadow); background:linear-gradient(180deg, color-mix(in oklab, var(--card) 96%, transparent), var(--card)); }
+    .btn:hover{ transform: translateY(-1px); }
+    .ghost{ background: transparent; box-shadow:none }/* Hero */
+.hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items:center; padding: 54px 0 24px }
+.hero h1{ font-size: clamp(32px, 4.5vw, 56px); line-height:1.1; margin: 10px 0 }
+.hero p{ color: var(--muted); font-size: clamp(15px, 1.6vw, 18px) }
+.badges{ display:flex; gap:10px; flex-wrap:wrap; margin: 18px 0 28px }
+.badge{ border:1px solid var(--ring); padding:6px 12px; border-radius: 999px; font-size:14px }
+.hero-card{ background:linear-gradient(180deg, color-mix(in oklab, var(--card) 96%, transparent), var(--card)); border:1px solid var(--ring); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); }
+.stats{ display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 18px }
+.stat{ background: transparent; border:1px dashed var(--ring); border-radius: 16px; padding: 12px; text-align:center }
+.kpi{ font-size: 24px; font-weight:800 }
+
+/* Sections */
+section{ padding: 64px 0 }
+.section-title{ font-size: 28px; font-weight:800; margin-bottom: 18px }
+.muted{ color: var(--muted) }
+
+/* About */
+.about{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px }
+.about-card{ background: var(--card); border:1px solid var(--ring); border-radius: 18px; padding: 20px; box-shadow: var(--shadow) }
+
+/* Skills */
+.tags{ display:flex; flex-wrap:wrap; gap:10px }
+.tag{ padding:8px 12px; border:1px solid var(--ring); border-radius: 12px; background: color-mix(in oklab, var(--card) 90%, transparent) }
+
+/* Projects */
+.filters{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 18px }
+.filters .chip{ padding:8px 12px; border:1px solid var(--ring); border-radius:999px; cursor:pointer; user-select:none }
+.filters .chip.active{ background: var(--brand); color:#000; border-color: transparent }
+.grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
+.card{ background: var(--card); border:1px solid var(--ring); border-radius: 16px; overflow:hidden; box-shadow: var(--shadow); display:flex; flex-direction:column }
+.thumb{ aspect-ratio: 16/10; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; font-weight:700 }
+.body{ padding: 14px 16px; display:flex; flex-direction:column; gap:8px; flex:1 }
+.card .meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto }
+
+/* Timeline */
+.timeline{ border-left: 2px dashed var(--ring); padding-left: 18px }
+.timeline .item{ margin: 14px 0 }
+.timeline .item h4{ margin: 0 0 4px }
+
+/* Contact */
+form{ display:grid; gap: 12px; max-width: 640px }
+input, textarea{ width:100%; padding:12px 14px; border-radius: 12px; border:1px solid var(--ring); background: var(--card); color:var(--text) }
+textarea{ min-height: 140px; resize: vertical }
+
+/* Footer */
+footer{ padding: 28px 0 56px; border-top: 1px solid var(--ring); color: var(--muted) }
+
+/* Scroll to top */
+.to-top{ position: fixed; right: 20px; bottom: 20px; opacity:0; pointer-events:none; transform: translateY(8px); transition: .2s; }
+.to-top.show{ opacity:1; pointer-events:auto; transform: translateY(0) }
+
+/* Responsive */
+@media (max-width: 960px){
+  .hero{ grid-template-columns: 1fr; }
+  .about{ grid-template-columns: 1fr }
+  .grid{ grid-template-columns: 1fr 1fr }
+}
+@media (max-width: 640px){
+  .grid{ grid-template-columns: 1fr }
+  .nav .links{ display:none }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">&lt;<span>YN</span>/&gt;</a>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="right">
+        <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
+        <a class="btn" href="#contact">Hire me</a>
+      </div>
+    </div>
+  </header>  <main class="container">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div>
+        <div class="badges">
+          <span class="badge">Open to work</span>
+          <span class="badge">Based in 🌍</span>
+        </div>
+        <h1>Hi, I'm <span style="color:var(--brand)">THANUPRIYA R</span> — I build fast, delightful web apps.</h1>
+        <p>Full‑stack developer specializing in modern JavaScript,and performance. I love bridging design and engineering to ship products users adore.</p>
+        <div style="display:flex; gap:10px; margin-top: 22px">
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="btn ghost" href="#contact">Let's Talk →</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="kpi" id="kpiYears"></div><div class="muted">FRESHER</div></div>
+          <div class="stat"><div class="kpi" id="kpiProjects">6</div><div class="muted">Projects COMPLETED</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <h3 style="margin:0 0 8px">Now building</h3>
+          <p class="muted" style="margin:0">Simple projects on Web Development,exploring creativity.</p>
+          <hr style="border:none; border-top:1px solid var(--ring); margin: 16px 0">
+          <h3 style="margin:0 0 8px">Availability</h3>
+          <p style="margin:0">Part‑time freelance.</p>
+        </div>
+      </div>
+    </section><!-- About -->
+<section id="about">
+  <h2 class="section-title">About</h2>
+  <div class="about">
+    <div class="about-card">
+      <p>“Passionate fresher in web development, eager to build user-friendly and innovative web solutions.” My toolkit includes HTML5, CSS3, JavaScript/TypeScript, and frameworks like React. I obsess over performance and accessibility without compromising aesthetics.</p>
+    </div>
+    <div class="about-card">
+      <ul>
+        <li>🏆 Winner — SSIT hackathon</li>
+        <li>💬 I mentor juniors and love pair‑programming</li>
+        <li>📚 Currently learning: Web Development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="tags">
+    <span class="tag">HTML5</span>
+    <span class="tag">CSS3 / Tailwind</span>
+    <span class="tag">JavaScript / TypeScript</span>
+    <span class="tag">React</span>
+    <span class="tag">Node.js</span>
+    <span class="tag">Git & GitHub</span>
+    <span class="tag">C Language</span>
+    <span class="tag">Python</span>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="filters" role="tablist" aria-label="Project filters">
+    <div class="chip active" data-filter="all" role="tab" aria-selected="true">All</div>
+    <div class="chip" data-filter="web" role="tab">Web</div>
+    <div class="chip" data-filter="ml" role="tab">AI/ML</div>
+  </div>
+  <div class="grid" id="projectGrid">
+    <!-- Project cards -->
+    <article class="card" data-tags="web ui">
+      <div class="thumb">Landing Page</div>
+      <div class="body">
+        <h3>Saasy — Marketing Site</h3>
+        <p class="muted">High‑converting landing page with A/B tests and accessibility audit score 100.</p>
+        <div class="meta">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-tags="web ml">
+      <div class="thumb">AI Helper</div>
+      <div class="body">
+        <h3>HelpMe — Chat Assistant</h3>
+        <p class="muted">Context‑aware chatbot with embeddings and local storage for sessions.</p>
+        <div class="meta">
+          <span class="tag">TypeScript</span>
+          <span class="tag">Node</span>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-tags="ui">
+      <div class="thumb">Design Kit</div>
+      <div class="body">
+        <h3>Flux UI — Component Library</h3>
+        <p class="muted">Reusable, accessible components with tokens and theming.</p>
+        <div class="meta">
+          <span class="tag">Figma</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-tags="web">
+      <div class="thumb">E‑commerce</div>
+      <div class="body">
+        <h3>Mini‑Shop</h3>
+        <p class="muted">Cart, search, filters, and checkout UI with localStorage persistence.</p>
+        <div class="meta">
+          <span class="tag">React</span>
+          <span class="tag">JS</span>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-tags="ml">
+      <div class="thumb">Vision</div>
+      <div class="body">
+        <h3>SkinGuard</h3>
+        <p class="muted">Image classification demo for dermatology using transfer learning.</p>
+        <div class="meta">
+          <span class="tag">Python</span>
+          <span class="tag">TensorFlow</span>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-tags="web ui">
+      <div class="thumb">Dashboard</div>
+      <div class="body">
+        <h3>Metrics Board</h3>
+        <p class="muted">SPA dashboard with charts and lazy‑loaded modules.</p>
+        <div class="meta">
+          <span class="tag">Vite</span>
+          <span class="tag">TS</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+    <div class="item">
+      <h4>Frontend Developer — Shadowfox (Aug 2025)</h4>
+      <p class="muted">Shipped task tracker MVP, improved TTI by 32% via code‑splitting and image optimization.</p>
+    </div>
+    <div class="item">
+      <h4>Web Dev Intern — InternPe (Jun–Aug 2025)</h4>
+      <p class="muted">Built calculator, to‑do app, and e‑commerce prototype. Mentored by senior engineers.</p>
+    </div>
+    <div class="item">
+      <h4>Freelance — Various (2023–present)</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="muted">Have a project or a question? Send a message — I usually reply within 24 hours.</p>
+  <form id="contactForm">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+      <input aria-label="Your name" name="name" placeholder="Your name" required />
+      <input aria-label="Your email" name="email" type="email" placeholder="Email" required />
+    </div>
+    <input aria-label="Subject" name="subject" placeholder="Subject" />
+    <textarea aria-label="Message" name="message" placeholder="Your message"></textarea>
+    <div style="display:flex; gap:10px; align-items:center">
+      <button class="btn" type="submit">Send Message</button>
+      <span id="formStatus" class="muted" aria-live="polite"></span>
+    </div>
+  </form>
+</section>
+
+  </main>  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+      <p>© <span id="year"></span> Your name. All rights reserved.</p>
+      <div style="display:flex; gap:10px">
+        <a class="tag" href="#" aria-label="GitHub">GitHub</a>
+        <a class="tag" href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a class="tag" href="#" aria-label="Resume">Resume</a>
+      </div>
+    </div>
+  </footer><a href="#home" class="btn to-top" id="toTop" aria-label="Back to top">↑</a>
+
+  <script>
+    // --- Theme toggle with localStorage ---
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const setTheme = mode => {
+      if (mode === 'light') root.classList.add('light');
+      else root.classList.remove('light');
+      localStorage.setItem('theme', mode);
+      themeToggle.textContent = root.classList.contains('light') ? '🌞' : '🌙';
+    };
+    setTheme(savedTheme || (prefersLight ? 'light' : 'dark'));
+    themeToggle.addEventListener('click', () => setTheme(root.classList.contains('light') ? 'dark' : 'light'));
+
+    // --- Project filtering ---
+    const chips = document.querySelectorAll('.filters .chip');
+    const cards = document.querySelectorAll('#projectGrid .card');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-selected','false'); });
+      chip.classList.add('active'); chip.setAttribute('aria-selected','true');
+      const f = chip.dataset.filter;
+      cards.forEach(card => {
+        const show = f === 'all' || card.dataset.tags.includes(f);
+        card.style.display = show ? 'flex' : 'none';
+      });
+    }));
+
+    // --- Contact form (demo only) ---
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      // Simulate send
+      status.textContent = 'Sending…';
+      setTimeout(() => {
+        status.textContent = 'Thanks! Your message was queued locally (demo).';
+        localStorage.setItem('lastMessage', JSON.stringify({ ...data, at: new Date().toISOString() }));
+        form.reset();
+      }, 700);
+    });
+
+    // --- Scroll to top button ---
+    const toTop = document.getElementById('toTop');
+    addEventListener('scroll', () => {
+      if (scrollY > 500) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    });
+
+    // --- Intersection fade‑in ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((el) => {
+        if (el.isIntersecting) {
+          el.target.animate([
+            {opacity:0, transform:'translateY(12px)'},
+            {opacity:1, transform:'translateY(0)'}
+          ], { duration: 500, easing: 'ease-out', fill: 'forwards' });
+          observer.unobserve(el.target);
+        }
+      })
+    }, { threshold: .08 });
+    document.querySelectorAll('section, .card').forEach(el => observer.observe(el));
+
+    // --- Dynamic year ---
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script></body>
+</html
